@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lets made tourism page</title>
+    <link_rel= "stylesheet" href="postpage.css">
+    </link_rel= "preconnect" href="https://fonts.googleepi.com">
+    </link_rel= "preconnect" href="https://fonts.gstatic.com">
+    </link_rel= "https://fontsgooglepis.com/css/css2family=Arimo&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page">
+        <div class="above">
+            <div class="userInform">
+                <div class="UserImg">
+                    <img src="profile.jpg" alt="" class="cover">
+                </div>
+                <h3>Mohita.sharma<br><span>Mehrangarh Fort,Jodhpur(Rajasthan)</span></h3>
+            </div>
+            <div>
+                <ion-icon name="ellipsis-vertical" class="menu" onclick="fmenu()"></ion-icon>
+            </div>
+        </div>
+        <div class="mainPics">
+            <img src="mehrangarh.jpg" alt="" class="cover">
+        </div>
+        <div class="theButton">
+            <div class="left">
+                <img src="like.jpg" alt="" class="btnlike" onclick="flike()">
+                <img src="comment.png" alt="" class="btncomment" onclick="fcomment()">
+                <img src="share.png" alt="">
+            </div>
+             <div class="right">
+                <img src="save.png" alt="" class="btnSave">
+            </div>
+        </div>
+        <h4 class="likes">1.1054 likes</h4>
+        <h4 class="captions"><b>MOhita.sharma</b> Relax & take a breath.</h4>   
+        <h4 class="comments">View all 300 comments</h4>  
+        <div class="add_a_comment">
+            <div class="UserImg">
+                <img src="userBottom.jpg" alt="">
+            </div>
+            <input type="text" class="theComment" placeholder="Add a comment..."></input>
+        </div>
+        <h5 class="time">3 hours ago</h5>
+    </div>
+    <script>
+        function flike(){
+            const like = document.querySelector(".btnLike");
+            if(like.src.match("like.jpg")){
+                like.src="liked.png";
+                document.querySelector(".likes").innerHTML="1.055 likes";
+            }
+            else{
+                like.src ="like.png";
+                document.querySelector("likes").innerHTML="1.054 likes";
+            }
+        }
+        function fcomment(){
+            document.querySelector(".theComment").focus();
+        }
+
+        function fsave(){
+            const save = document.querySelector("btnSave");
+            if(save.src.match(save.png)){
+                save.src="saves.png";
+            }
+            else{
+                save.src="save.png";
+            }
+        }
+        function fmenu(){
+            document.querySelector(".page").classlist.toggle("change");
+        }
+    </script>
+    <script type="module" src="http://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="http://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

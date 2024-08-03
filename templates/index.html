@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<body>
+{% include "navbar.html" %}
+<div class="toppad"></div>
+<!-- header -->
+<header>
+  <!--image slider start-->
+  <div class="slider">
+    <div class="slides">
+     <!--radio buttons start-->
+     <input type="radio" name="radio-btn" id="radio1">
+     <input type="radio" name="radio-btn" id="radio2">
+     <input type="radio" name="radio-btn" id="radio3">
+     <input type="radio" name="radio-btn" id="radio4">
+     <!--radio buttons end-->
+     <!--slide images start-->
+      {% for image in images %}
+      {% if image == images[0] %}
+      <div class="slide first">
+      {% else %}
+      <div class="slide">
+      {% endif %}
+        <img src={{ "/static/upload/" + image }} alt="">
+      </div>
+    {% endfor %}
+
+     <!--slide images end-->
+     <!--automatic navigation start-->
+     <!-- <div class="navigation-auto">
+         <div classs="auto-btn1"></div>
+         <div classs="auto-btn2"></div>
+         <div classs="auto-btn3"></div>
+         <div classs="auto-btn4"></div>  
+     </div> -->
+     <!--automatic navigation end-->
+ </div>
+</div> 
+<!--image slider end-->
+    <div class = "banner">
+    <div class = "container-blog">
+    <h1 class = "banner-title">
+        <span>Visito.</span> in
+    </h1>
+    <p>Allow yourself to visit & explore new places</p>
+    <form action="/search">
+        <input class = "search-input" placeholder="find your destination . . ." name="city">
+        <button type = "submit" class = "search-btn">
+        <i class = "fas fa-search"></i>
+        </button>
+    </form>
+    </div>
+    </div>
+</header>
+<!-- end of header -->
+<!-- design -->
+<section class = "design" id = "design">
+    <div class = "container-blog">
+      <div class = "title">
+        <h2>Recent Travel Destinations</h2>
+        <p>recent Travel Destinations on the blog</p>
+      </div>
+
+      <div class = "design-content">
+        {% for post in posts %}
+        <!-- item -->
+        <div class = "design-item">
+          <a href = "{{ url_for('post') }}/{{ post._did }}">
+          <div class = "design-img">
+            <img src="static/upload/{{ post.img }}" alt = "">
+            <span>
+            <i class = "far fa-heart"></i> {{ post.like }}
+            </span>
+            <span>{{ post.city }}</span>
+          </div>
+          </a>
+          <div class = "design-title">
+            <a href = "{{ url_for('post') }}/{{ post._did }}">{{ post.title }}</a>
+          </div>
+        </div>
+        <!-- end of item -->
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!-- end of design -->
+
+  <!-- blog -->
+  <section class = "blog" id = "blog">
+    <div class = "container-blog">
+      <div class = "title">
+        <h2>Latest Blog</h2>
+        <p>Recent blogs about Tourist Destinations</p>
+      </div>
+      <div class = "blog-content">
+        {% for latest in latest_posts %}
+        <!-- item -->
+        <div class = "blog-item">
+          <div class = "blog-img">
+            <a href = "{{ url_for('post') }}/{{ latest._did }}">
+            <img src = "static/upload/{{ latest.img }}" alt = "">
+            </a>
+            <span><i class = "far fa-heart"> {{ latest.like }}</i></span>
+          </div>
+          <div class = "blog-text">
+            <span>{{ latest.time }}</span>
+            <h2>{{ latest.title }}</h2>
+            <p> {{ latest.content[0:50] }}...</p>
+            <a href = "{{ url_for('post') }}/{{ latest._did }}">Read More</a>
+          </div>
+        </div>
+        <!-- end of item -->
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!-- end of blog -->
+  <!-- about -->
+  <section class = "about" id = "about">
+    <div class = "container-blog">
+      <div class = "about-content">
+        <div>
+          <img src = "/static/Mn.jpg" alt = "">
+        </div>
+        <div class = "about-text">
+          <div class = "title">
+            <h2>Mohna</h2>
+            <p>Travelling is our passion</p>
+          </div>
+          <p>If you travel, you can experience things that you could never experience at home. You may see beautiful places and landscapes that do not exist where you live. You may meet people that will change your life, and your thingking. You may try activities that you have never tried before.
+          </p>
+          <p>We are here to introduce famous places that will interact & attract people to visit. we both are very fond of travelling so as a website developer we have made a particular website in which people plan for there vacations & user also upload there experience about the new places</p>
+        </div>
+      </div>
+    </div>
+  </section> 
+  <!-- end of about -->
+  <div class="image-grid">
+    {% for image in images1 %}
+      {% if images1.index(image) % 3 == 2 %}
+      <img src={{ "/static/upload/" + image }} class="image-grid-col-2 image-grid-row-2" alt="tourism">
+      {% else %}
+      <img src={{ "/static/upload/" + image }} alt="tourism">
+      {% endif %}
+    {% endfor %}
+  </div>
+
+<script type="text/javascript">
+  var counter = 1;
+  setInterval(function(){
+      document.getElementById('radio' + counter).checked = true;
+      counter++;
+      if(counter > 4){
+          counter = 1;
+      }
+  },5000);
+ </script>
+
+{% include "footer.html" %}
+
+</body>
+</html>
